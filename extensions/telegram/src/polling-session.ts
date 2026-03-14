@@ -234,7 +234,7 @@ export class TelegramPollingSession {
       if (elapsed > POLL_STALL_THRESHOLD_MS && runner.isRunning()) {
         this.#consecutiveStallRestarts += 1;
         stalledRestart = true;
-        if (this.#consecutiveStallRestarts >= MAX_CONSECUTIVE_POLL_RESTARTS) {
+        if (this.#consecutiveStallRestarts > MAX_CONSECUTIVE_POLL_RESTARTS) {
           this.opts.log(
             `[telegram] Polling recovery exhausted after ${this.#consecutiveStallRestarts} consecutive stall restarts without successful getUpdates; escalating to process exit.`,
           );
